@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import {
   Dimensions,
@@ -18,6 +19,10 @@ interface SearchResultCardProps {
 }
 
 export function SearchResultCard({ movie }: SearchResultCardProps) {
+  const handlePress = () => {
+    router.push(`/movie/${movie.id}`);
+  };
+
   // Get the first genre name for display
   const getGenreName = () => {
     // This is a simplified approach - in a real app you'd map genre_ids to genre names
@@ -49,7 +54,7 @@ export function SearchResultCard({ movie }: SearchResultCardProps) {
   };
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       {/* Movie Poster */}
       <View style={styles.posterContainer}>
         <Image
